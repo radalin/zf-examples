@@ -1,0 +1,21 @@
+<?=$this->message?>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Emails</th>
+    </tr>
+    <?php foreach ($this->users as $user) { ?>
+        <tr>
+            <td><?=$user->id?></td>
+            <td><?=$user->name?></td>
+            <td>
+                <?php foreach ($this->users->emails as $email) { ?>
+                    <?=$email?><br />
+                <?php } ?>
+            </td>
+            <td><a href="/userManager/edit/<?=$user->id?>">Edit</a></td>
+            <td><a href="/userManager/delete/<?=$user->id?>">Delete</a></td>
+        </tr>
+    <?php } ?>
+</table>

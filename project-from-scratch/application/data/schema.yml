@@ -1,0 +1,40 @@
+Email:
+  connection: doctrine
+  tableName: user_emails
+  columns:
+    id:
+      type: integer(8)
+      unsigned: false
+      primary: true
+      autoincrement: true
+    address:
+      type: string(100)
+      notnull: true
+    is_active:
+      type: integer(4)
+      notnull: true
+      default: 0
+    description:
+      type: string
+    user_id:
+      type: integer(8)
+      notnull: true
+  relations:
+    User:
+      foreignAlias: emails
+User:
+  connection: doctrine
+  tableName: user
+  columns:
+    id:
+      type: integer(8)
+      fixed: 0
+      unsigned: false
+      primary: true
+      autoincrement: true
+    name:
+      type: string(100)
+      notnull: true
+    password:
+      type: string(60)
+      notnull: true
