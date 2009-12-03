@@ -1,11 +1,13 @@
 <?php
 
 
-class UserManagerController extends Zend_Controller_Action
+class UserManagerController extends Kartaca_Controller_Action
+{
     public function indexAction()
     {
         $userData = Doctrine::getTable("User");
         $this->view->users = $userData->fetchAll(); //On the view there is a foreach loop which shows everything related to the user.
+        $this->_logger->debug("Loading All Users");
     }
 
     public function addAction()
@@ -13,6 +15,7 @@ class UserManagerController extends Zend_Controller_Action
         //Make some validations about existing user id, if you don't you can end up adding more users with this usage.
         //Do something like this to write less code but never do "exactly like this"
         $this->getRequest()->setParam("id", "");
+        $this->_logger->debug("Directing to Edit Action from Add");
         $this->_forward("edit");
     }
 
@@ -27,6 +30,7 @@ class UserManagerController extends Zend_Controller_Action
                 $this->view->message = "Success";
             } else {
                 $this->view->message = "Failure";
+                $this->_logger->err("Update Failed on user");
             }
             $this->_forward("index");
         }
