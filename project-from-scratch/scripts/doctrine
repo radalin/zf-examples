@@ -1,0 +1,5 @@
+#!/usr/bin/php
+<?php
+define('BASEPATH','.'); // mockup that this app was executed from ci, taken from Doctrine documentation
+chdir(dirname(__FILE__ . "/../")); //Be sure that your current directory should be the root (folder that contains scripts) directory, I dunno why but the other options failed for me...
+require('doctrine.php');
