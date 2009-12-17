@@ -27,6 +27,11 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $front->getRouter()->addConfig(new Zend_Config_Ini(APPLICATION_PATH . "/configs/routes.ini"), "routes");
     }
 
+    protected function _initNamespace()
+    {
+        Zend_Loader_Autoloader::getInstance()->registerNamespace("Kartaca");
+    }
+
     protected function _initDoctrine()
     {
         //Load the autoloader
