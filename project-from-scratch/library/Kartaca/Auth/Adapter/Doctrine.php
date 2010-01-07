@@ -78,7 +78,7 @@ class Kartaca_Auth_Adapter_Doctrine implements Zend_Auth_Adapter_Interface
         $result = $this->_table
             ->createQuery("dctrn_find")
             ->where("{$this->_credentialCol} = ?", $this->_credential)
-            ->where("{$this->_identityCol} = ?", $this->_identity)
+            ->andWhere("{$this->_identityCol} = ?", $this->_identity)
             ->execute(array());
         return new Zend_Auth_Result(
             $result[0]->id ? Zend_Auth_Result::SUCCESS : Zend_Auth_Result::FAILURE, //You may define different failure types, however this one is enough
