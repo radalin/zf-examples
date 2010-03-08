@@ -26,9 +26,10 @@ class UserManagerController extends Kartaca_Controller_Action
         if ($this->getRequest()->isPost()) {
             $user = new User();
             $user->hydrate($_POST['user']); //Attention here!
-            if ($user->save()) {
+            try {
+                $user->save();
                 $this->view->message = "Success";
-            } else {
+            } catch (Exception $e) {
                 $this->view->message = "Failure";
                 $this->_logger->err("Update Failed on user");
             }
