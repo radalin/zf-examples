@@ -25,6 +25,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $front = $this->getResource("frontController");
         //Read the routes from an ini file and in that ini file use the options with routes prefix...
         $front->getRouter()->addConfig(new Zend_Config_Ini(APPLICATION_PATH . "/configs/routes.ini"), "routes");
+        
+        //Add modules dirs to the controllers for default routes...
+        $front->addModuleDirectory(APPLICATION_PATH . '/modules');
     }
 
     protected function _initNamespace()
