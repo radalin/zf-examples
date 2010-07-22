@@ -1,0 +1,33 @@
+options:
+  type: INNODB
+  collate: utf8_unicode_ci
+  charset: utf8
+Email_Quota:
+  actAs: [SoftDelete]
+  connection: doctrine
+  tableName: email_quota
+  columns:
+    id:
+      type: integer(8)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    email_id:
+      type: integer(8)
+      notnull: true
+    quota:
+      type: integer(8)
+      notnull: true
+    deleted_at:
+      type: timestamp
+      notnull: false
+  relations:
+    Email:
+      local: email_id
+      foreign: id
+      class: Email
+      alias: Email
+  indexes:
+    email_index:
+      fields: [email_id]
