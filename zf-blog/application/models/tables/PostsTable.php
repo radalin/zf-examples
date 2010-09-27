@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of Kartaca Sample ZF Blog.
  *
@@ -14,24 +15,22 @@
  * along with Kartaca Sample ZF Blog.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category   Kartaca
- * @package    Krtc_Blog_Controllers
+ * @package    Krtc_Blog_Model
  * @copyright  Copyright (c) 2010 Kartaca (http://www.kartaca.com)
  * @license    http://www.gnu.org/licenses/ GPL
  */
-class IndexController extends Zend_Controller_Action
+class PostsTable extends Zend_Db_Table
 {
+    protected $_name = "posts";
+    protected $_rowClass = "Posts";
 
-    public function init()
+    public function getLatestPosts($count = 5)
     {
-        /* Initialize action controller here */
+        $select = $this->select()
+                        ->order("id DESC")
+                        ->limit($count);
+        return $this->fetchAll($select);
     }
 
-    public function indexAction()
-    {
-        $this->view->title = "Latest Blogs In My Site";
-        //Show a post list here...
-        $data = new PostsTable();
-        $this->view->posts = $data->getLatestPosts();
-    }
 }
 

@@ -14,24 +14,25 @@
  * along with Kartaca Sample ZF Blog.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category   Kartaca
- * @package    Krtc_Blog_Controllers
+ * @package    Krtc_Blog_Model
  * @copyright  Copyright (c) 2010 Kartaca (http://www.kartaca.com)
  * @license    http://www.gnu.org/licenses/ GPL
+ * @author     roysimkes
  */
-class IndexController extends Zend_Controller_Action
+class Kartaca_Model extends Zend_Db_Table_Row
 {
-
-    public function init()
+    protected function _escape($exp, $val)
     {
-        /* Initialize action controller here */
+        return $this->_table->getAdapter()->quoteInto($exp, $val);
     }
 
-    public function indexAction()
+    /**
+     *
+     * @return int affected rows count
+     */
+    public function save()
     {
-        $this->view->title = "Latest Blogs In My Site";
-        //Show a post list here...
-        $data = new PostsTable();
-        $this->view->posts = $data->getLatestPosts();
+        return $this->_table->update($this->_data, $this->_escape("id = ?", $this->id));
     }
 }
 
