@@ -22,8 +22,13 @@
 class PostsTable extends Zend_Db_Table
 {
     protected $_name = "posts";
-    protected $_rowClass = "Posts";
+    protected $_rowClass = "Post";
 
+    /**
+     *
+     * @param int $count
+     * @return Zend_Db_Table_RowSet
+     */
     public function getLatestPosts($count = 5)
     {
         $select = $this->select()
@@ -32,5 +37,16 @@ class PostsTable extends Zend_Db_Table
         return $this->fetchAll($select);
     }
 
+    /**
+     *
+     * @param string $permalink
+     * @return Posts
+     */
+    public function findByPermalink($permalink)
+    {
+        $select = $this->select()
+            ->where("permalink = ?", $permalink);
+        return $this->fetchRow($select);
+    }
 }
 

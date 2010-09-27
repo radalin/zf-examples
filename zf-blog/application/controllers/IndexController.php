@@ -1,7 +1,7 @@
 <?php
 /**
  * This file is part of Kartaca Sample ZF Blog.
- *
+ * 
  * Kartaca Sample ZF Blog is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -12,11 +12,12 @@
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
  * along with Kartaca Sample ZF Blog.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  * @category   Kartaca
  * @package    Krtc_Blog_Controllers
  * @copyright  Copyright (c) 2010 Kartaca (http://www.kartaca.com)
  * @license    http://www.gnu.org/licenses/ GPL
+ * @author     roysimkes
  */
 class IndexController extends Zend_Controller_Action
 {
@@ -28,10 +29,6 @@ class IndexController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        $this->view->title = "Latest Blogs In My Site";
-        //Show a post list here...
-        $data = new PostsTable();
-        $this->view->posts = $data->getLatestPosts();
+        $this->_forward("index", "posts");
     }
 }
-

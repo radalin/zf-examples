@@ -17,6 +17,7 @@
  * @package    Krtc_Blog_Controllers
  * @copyright  Copyright (c) 2010 Kartaca (http://www.kartaca.com)
  * @license    http://www.gnu.org/licenses/ GPL
+ * @author     roysimkes
  */
 class ErrorController extends Zend_Controller_Action
 {

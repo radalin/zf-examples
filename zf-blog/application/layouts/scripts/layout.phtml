@@ -17,7 +17,7 @@
  * @package
  * @copyright  Copyright (c) 2010 Kartaca (http://www.kartaca.com)
  * @license    http://www.gnu.org/licenses/ GPL
- * @author     ${user}
+ * @author     roysimkes
  */
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -27,7 +27,8 @@
     <title>My Personal Zend Framework Blog</title>
 </head>
 <body>
-    <h1><?=$this->title?></h1>
+    <h1><a href="<?=$this->baseUrl()?>">My Personal Zend Framework Blog</a></h1>
+    <h2><?=$this->title?></h2>
     <?php echo $this->layout()->content; ?>
 </body>
 </html>
