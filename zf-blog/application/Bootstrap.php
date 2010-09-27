@@ -49,5 +49,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $front->getRouter()->addConfig(new Zend_Config_Ini(APPLICATION_PATH . "/configs/routes.ini"), "routes");
     }
 
+    protected function _initConstants()
+    {
+        define("APPLICATION_BASEURL", $this->_options["baseUrl"]);
+    }
+
 }
 

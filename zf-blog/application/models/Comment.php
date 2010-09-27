@@ -21,4 +21,12 @@
  */
 class Comment extends Kartaca_Model
 {
+    public function loadFromForm(Zend_Form $form)
+    {
+        $this->commentator = $form->getCommentator();
+        $this->body = $form->getBody();
+        $this->email = $form->getEmail();
+        $this->post_id = $form->getPostId();
+        $this->title = $form->getTitle();
+    }
 }

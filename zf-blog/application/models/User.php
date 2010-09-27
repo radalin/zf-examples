@@ -21,5 +21,8 @@
  */
 class User extends Kartaca_Model
 {
-    //put your code here
+    public function loadFromForm(Zend_Form $form)
+    {
+
+    }
 }

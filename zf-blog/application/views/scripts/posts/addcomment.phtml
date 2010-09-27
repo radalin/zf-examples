@@ -14,41 +14,14 @@
  * along with Kartaca Sample ZF Blog.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category   Kartaca
- * @package    Krtc_Blog_Model
+ * @package
  * @copyright  Copyright (c) 2010 Kartaca (http://www.kartaca.com)
  * @license    http://www.gnu.org/licenses/ GPL
  * @author     roysimkes
  */
-abstract class Kartaca_Model extends Zend_Db_Table_Row
-{
-    protected function _escape($exp, $val)
-    {
-        return $this->_table->getAdapter()->quoteInto($exp, $val);
-    }
 
-    /**
-     *
-     * @return mixed
-     */
-    public function insert()
-    {
-        $_id = $this->_table->insert($this->_data);
-        if (is_integer($_id)) {
-            $this->id = $_id;
-            return $this->id;
-        }
-        return $_id;
-    }
-
-    /**
-     *
-     * @return int affected rows count
-     */
-    public function update()
-    {
-        return $this->_table->update($this->_data, $this->_escape("id = ?", $this->id));
-    }
-
-    abstract public function loadFromForm(Zend_Form $form);
+if ($this->updated) {
+    echo "Your comment is posted! It will be published once it's approved! You can now go back!";
+} else {
+    echo "There was a problem. Please try again later";
 }
-

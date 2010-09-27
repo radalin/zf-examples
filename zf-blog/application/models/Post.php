@@ -21,5 +21,9 @@
  */
 class Post extends Kartaca_Model
 {
+    public function loadFromForm(Zend_Form $form)
+    {
+        
+    }
 }
 

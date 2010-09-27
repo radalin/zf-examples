@@ -1,7 +1,10 @@
 <?php
+
+require_once(APPLICATION_PATH . "/forms/AddCommentForm.php");
+
 /**
  * This file is part of Kartaca Sample ZF Blog.
- *
+ * 
  * Kartaca Sample ZF Blog is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -12,54 +15,92 @@
  * GNU General Public License for more details.
  * You should have received a copy of the GNU General Public License
  * along with Kartaca Sample ZF Blog.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  * @category   Kartaca
  * @package    Krtc_Blog_Controllers
  * @copyright  Copyright (c) 2010 Kartaca (http://www.kartaca.com)
  * @license    http://www.gnu.org/licenses/ GPL
  * @author     roysimkes
+ * 
  */
 class PostsController extends Zend_Controller_Action
 {
 
     /**
-     *
      * @var PostsTable
+     * 
      */
-    private $_table;
+    private $_postsTable = null;
+    /**
+     * @var CommentsTable
+     * 
+     */
+    private $_commentsTable = null;
 
     public function init()
     {
-        $this->_table = new PostsTable();
+        $this->_postsTable = new PostsTable();
+        $this->_commentsTable = new CommentsTable();
     }
 
     public function indexAction()
     {
         $this->view->title = "Latest Blogs In My Site";
         //Show a post list here...
-        
-        $this->view->posts = $this->_table->getLatestPosts();
+
+        $this->view->posts = $this->_postsTable->getLatestPosts();
     }
 
     public function showAction()
     {
         //Get the post
-        $_permalink = $this->_request->getParam("permalink");
-        $_post = $this->_table->findByPermalink($_permalink);
+        $_post = $this->_getParam("post");
+        if (!isset($_post) || !$_post instanceof Post) {
+            $_permalink = $this->_request->getParam("permalink");
+            $_post = $this->_postsTable->findByPermalink($_permalink);
+        }
+
         //Get the comments
-        $_commentsTable = new CommentsTable();
-        $_comments = $_commentsTable->getApprovedCommentsForPost($_post->id);
+        $_comments = $this->_commentsTable->getApprovedCommentsForPost($_post->id);
 
         $this->view->post = $_post;
         $this->view->commentsCount = count($_comments);
         $this->view->comments = $_comments;
+
+        //Create the comment form...
+        $_form = $this->_getParam("form");
+        if (!isset($_form) || !$_form instanceof AddCommentForm) {
+            $_form = new AddCommentForm();
+        }
+        $_form->setPost($_post);
+        $this->view->commentForm = $_form;
+    }
+
+    public function addcommentAction()
+    {
+        if ($_POST) {
+            $_form = new AddCommentForm();
+            $_isValid = $_form->isValid($_POST);
+            $_post = $this->_postsTable->findByPermalink($_form->getPostPermalink());
+            if ($_isValid) {
+                //Now insert it...
+                $_newComment = $this->_commentsTable->createRow();
+                $_newComment->loadFromForm($_form);
+                if ($_newComment->insert()) {
+                    $this->view->updated = true;
+                } else {
+                    $this->view->updated = false;
+                }
+            } else {
+                $this->_forward("show", null, null, array("form" => $_form, "post" => $_post, "permalink" => $_post->permalink));
+            }
+        } else {
+            $this->view->updated = false;
+        }
     }
 
     public function updateAction()
     {
-        $this->view->updated = true;
+        // action body
     }
 }
-
-
-
