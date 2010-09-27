@@ -23,22 +23,22 @@
 <div class="post">
     <h2><?=$this->post->title?></h2>
     <div class="body">
-        <?=$this->post->body?>
+        <?=nl2br($this->post->body)?>
     </div>
-    <hr />
-    Comments for this blog (<?=$this->commentsCount?>)
-    <br />
     <?php if ($this->commentsCount > 0) { ?>
+        <div style="float: right">Comments for this blog (<?=$this->commentsCount?>)</div>
         <div class="comments">
             <?php foreach ($this->comments as $cmt) { ?>
+                <hr />
                 <div class="comment">
-                    <h4><?=$cmt->title?></h4>
-                    <div class="author"><?=$cmt->commentator?></div>
+                    <h3 class="title"><?=$cmt->title?> <span class="alt">by <?=$cmt->commentator?></span></h3>
+                     
                     <div class="body"><?=nl2br($cmt->body)?></div>
                 </div>
             <?php } ?>
         </div>
     <?php } else { ?>
+        <hr />
         There is no comments for this post yet. Be the first!
     <?php } ?>
     <?php $this->commentForm ?>

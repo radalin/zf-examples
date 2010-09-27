@@ -29,15 +29,16 @@ $this->headLink()->appendStylesheet($this->baseUrl() . "/style.css");
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>My Personal Zend Framework Blog</title>
-    <!--<link rel="stylesheet" href="<?=$this->baseUrl()?>/blueprint/screen.css" type="text/css" media="screen, projection">
+    <!-- Blueprint css framework add on -->
+    <link rel="stylesheet" href="<?=$this->baseUrl()?>/blueprint/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="<?=$this->baseUrl()?>/blueprint/print.css" type="text/css" media="print">
-    <!--[if lt IE 8]><link rel="stylesheet" href="<?=$this->baseUrl()?>/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <!--[if lt IE 8]>
+        <link rel="stylesheet" href="<?=$this->baseUrl()?>/blueprint/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->
+    <link rel="stylesheet" href="<?=$this->baseUrl()?>/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
 
-    <!-- Import fancy-type plugin for the sample page. -->
-    <!--<link rel="stylesheet" href="<?=$this->baseUrl()?>/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
-
+    <!-- And my custom style sheet -->
     <?php echo $this->headLink() ?>
-    -->
 </head>
 <body>
     <div class="container">

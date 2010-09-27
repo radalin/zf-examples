@@ -27,7 +27,7 @@ foreach ($this->posts as $post) { ?>
         <!-- Linking without routes... -->
         <!--<h2><a href="<?=$this->baseUrl();?>/posts/show/permalink/<?=$post->permalink?>"><?=$post->title?></a></h2>-->
         <div class="body">
-            <?=$post->body?>
+            <?=nl2br($post->body)?>
         </div>
     </div>
     <hr />
