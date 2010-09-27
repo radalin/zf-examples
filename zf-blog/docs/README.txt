@@ -28,3 +28,7 @@ The following is a sample VHOST you might want to consider for your project.
    </Directory>
     
 </VirtualHost>
+
+
+You don't actually need to create a virtual host. However it helps to create one
+as you do not require to add any prefixes to the urls you are creating.
