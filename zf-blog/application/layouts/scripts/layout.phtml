@@ -19,16 +19,40 @@
  * @license    http://www.gnu.org/licenses/ GPL
  * @author     roysimkes
  */
+
+//Now let's add my custom stylesheet
+$this->headLink()->appendStylesheet($this->baseUrl() . "/style.css");
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>My Personal Zend Framework Blog</title>
+    <!--<link rel="stylesheet" href="<?=$this->baseUrl()?>/blueprint/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="<?=$this->baseUrl()?>/blueprint/print.css" type="text/css" media="print">
+    <!--[if lt IE 8]><link rel="stylesheet" href="<?=$this->baseUrl()?>/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+
+    <!-- Import fancy-type plugin for the sample page. -->
+    <!--<link rel="stylesheet" href="<?=$this->baseUrl()?>/blueprint/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+
+    <?php echo $this->headLink() ?>
+    -->
 </head>
 <body>
-    <h1><a href="<?=$this->baseUrl()?>">My Personal Zend Framework Blog</a></h1>
-    <h2><?=$this->title?></h2>
-    <?php echo $this->layout()->content; ?>
+    <div class="container">
+        <h1><a href="<?=$this->baseUrl()?>">My Personal Zend Framework Blog</a></h1>
+        <h2 class="alt">That's a sample blog application for Zend Framework.</h2>
+        <hr />
+        <?php echo $this->layout()->content; ?>
+        <div id="footer">
+            <div class="promote alt">
+                <a href="http://code.kartaca.com/zf-blog">Zend Framework Blog Example</a>
+            </div>
+            <p>
+                All Rights reserved 2010 Kartaca
+            </p>
+        </div>
+    </div>
 </body>
 </html>

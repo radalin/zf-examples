@@ -1,0 +1,63 @@
+/* 
+    Document   : style
+    Created on : Sep 27, 2010, 3:59:37 PM
+    Author     : roysimkes
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+#footer {
+    background-image: url("images/krtc_footer.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    height: 50px;
+    display: block;
+}
+
+#footer {
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    margin-top: 10px;
+}
+
+#footer div.promote {
+    float: left;
+    padding: 5px 10px;
+}
+
+#footer div.promote a {
+    margin-right: 5px;
+}
+
+#footer p a {
+    font-weight: bold;
+    text-decoration: none;
+    color: gray;
+}
+
+#footer p a:hover {
+    text-decoration: underline;
+}
+
+#footer div.promote div.text {
+    font-size: 10px;
+    color: gray;
+    margin-bottom: 5px;
+}
+
+#footer p {
+    padding: 10px;
+    font-size: 9px;
+    color: gray;
+    text-align: right;
+    margin-right: 70px;
+}
