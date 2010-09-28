@@ -29,7 +29,7 @@ class Comment extends Kartaca_Model
         $this->post_id = $form->getPostId();
         $this->title = $form->getTitle();
 
-        //Auto approve it as the example does not yet contain a comment list editor.
+        //FIXME: Do not auto approve the comments once you have written the comments moderation
         $this->approved_at = date("d.m.Y H:i:s");
     }
 }
