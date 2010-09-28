@@ -19,17 +19,7 @@
  * @license    http://www.gnu.org/licenses/ GPL
  * @author     roysimkes
  */
-/*
-if ($this->updated) {
-    echo "Your post is updated! You can now go back!";
-} else {
-    echo "There was a problem. Please try again later";
-}
- */
-if ($this->notAuthorized) {
-    echo "You are not allowed to see this page. Please log in and try again";
-} else if ($this->updated) {
-    echo "Your post is updated! You can go back now...";
-} else {
-    echo $this->form;
+
+if ($this->loggedOut) {
+    echo "Sady, We were able to log you out. We hope you return some day. Just for the sake of good old days perhaps";
 }

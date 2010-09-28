@@ -19,17 +19,10 @@
  * @license    http://www.gnu.org/licenses/ GPL
  * @author     roysimkes
  */
-/*
-if ($this->updated) {
-    echo "Your post is updated! You can now go back!";
-} else {
-    echo "There was a problem. Please try again later";
-}
- */
-if ($this->notAuthorized) {
-    echo "You are not allowed to see this page. Please log in and try again";
-} else if ($this->updated) {
-    echo "Your post is updated! You can go back now...";
-} else {
-    echo $this->form;
-}
+if ($this->invalidFormError) { ?>
+    <div class="error">You should fill all the fields</div>
+<?php } else if ($this->showWrongPassError) { ?>
+    <div class="error">Credentials you have entered are not valid</div>
+<?php } ?>
+
+<?=$this->form?>

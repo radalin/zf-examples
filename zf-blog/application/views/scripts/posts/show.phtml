@@ -23,11 +23,13 @@
 <div class="post">
     <h2>
         <?=$this->post->title?>
-        <span class="alt small">
-            <a href="<?=$this->baseUrl()?>/posts/update/postId/<?=$this->post->id?>">
-                (Edit this Post)
-            </a>
-        </span>
+        <?php if (Zend_Auth::getInstance()->getIdentity()) { ?>
+            <span class="alt small">
+                <a href="<?=$this->baseUrl()?>/posts/update/postId/<?=$this->post->id?>">
+                    (Edit this Post)
+                </a>
+            </span>
+        <?php } ?>
     </h2>
     <div class="body">
         <?=nl2br($this->post->body)?>

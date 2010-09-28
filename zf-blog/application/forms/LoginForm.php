@@ -14,22 +14,42 @@
  * along with Kartaca Sample ZF Blog.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category   Kartaca
- * @package
+ * @package`   Kartaca_Blog_Form
  * @copyright  Copyright (c) 2010 Kartaca (http://www.kartaca.com)
  * @license    http://www.gnu.org/licenses/ GPL
  * @author     roysimkes
  */
-/*
-if ($this->updated) {
-    echo "Your post is updated! You can now go back!";
-} else {
-    echo "There was a problem. Please try again later";
-}
- */
-if ($this->notAuthorized) {
-    echo "You are not allowed to see this page. Please log in and try again";
-} else if ($this->updated) {
-    echo "Your post is updated! You can go back now...";
-} else {
-    echo $this->form;
+class LoginForm extends Zend_Form
+{
+    public function init()
+    {
+        $this->setAction(APPLICATION_BASEURL . "/user/login");
+        $this->setMethod("post");
+
+        $_username = $this->createElement("text", "username")
+                ->setLabel("username")
+                ->setRequired();
+
+        $_password = $this->createElement("password", "password")
+                ->setLabel("password")
+                ->setRequired();
+
+        $_sbmt = $this->createElement("submit", "Log In!");
+
+        $this->addElements(array(
+            $_username,
+            $_password,
+            $_sbmt,
+        ));
+    }
+
+    public function getUsername()
+    {
+        return $this->getElement("username")->getValue();
+    }
+
+    public function getPassword()
+    {
+        return $this->getElement("password")->getValue();
+    }
 }

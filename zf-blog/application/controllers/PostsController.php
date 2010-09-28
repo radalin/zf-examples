@@ -1,8 +1,4 @@
 <?php
-
-require_once(APPLICATION_PATH . "/forms/AddCommentForm.php");
-require_once(APPLICATION_PATH . "/forms/AddPostForm.php");
-
 /**
  * This file is part of Kartaca Sample ZF Blog.
  * 
@@ -24,6 +20,10 @@ require_once(APPLICATION_PATH . "/forms/AddPostForm.php");
  * @author     roysimkes
  * 
  */
+
+require_once(APPLICATION_PATH . "/forms/AddCommentForm.php");
+require_once(APPLICATION_PATH . "/forms/AddPostForm.php");
+
 class PostsController extends Zend_Controller_Action
 {
 
@@ -102,6 +102,12 @@ class PostsController extends Zend_Controller_Action
 
     public function updateAction()
     {
+        //Only allow updates if you are logged in...
+        if (!Zend_Auth::getInstance()->getIdentity()) {
+            $this->view->notAuthorized = true;
+            return;
+        }
+
         $_form = new AddPostForm();
         $this->view->updated = false;
         if ($_POST) {
