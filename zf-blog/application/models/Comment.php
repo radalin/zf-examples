@@ -14,7 +14,7 @@
  * along with Kartaca Sample ZF Blog.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category   Kartaca
- * @package
+ * @package    Kartaca_Blog_Model
  * @copyright  Copyright (c) 2010 Kartaca (http://www.kartaca.com)
  * @license    http://www.gnu.org/licenses/ GPL
  * @author     roysimkes
@@ -28,5 +28,8 @@ class Comment extends Kartaca_Model
         $this->email = $form->getEmail();
         $this->post_id = $form->getPostId();
         $this->title = $form->getTitle();
+
+        //Auto approve it as the example does not yet contain a comment list editor.
+        $this->approved_at = date("d.m.Y H:i:s");
     }
 }

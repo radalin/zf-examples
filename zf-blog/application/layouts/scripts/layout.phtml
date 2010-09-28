@@ -45,13 +45,16 @@ $this->headLink()->appendStylesheet($this->baseUrl() . "/style.css");
         <h1><a href="<?=$this->baseUrl()?>">My Personal Zend Framework Blog</a></h1>
         <h2 class="alt">That's a sample blog application for Zend Framework.</h2>
         <hr />
+        <span class="alt"><a href="<?=$this->baseUrl()?>/posts/update">(Add New Post)</a></span>
+        <br />
         <?php echo $this->layout()->content; ?>
         <div id="footer">
             <div class="promote alt">
                 <a href="http://code.kartaca.com/zf-blog">Zend Framework Blog Example</a>
             </div>
             <p>
-                All Rights reserved 2010 Kartaca
+                Proud to be a <a href="http://www.gnu.org/licenses/">GPL</a> software<br />
+                <a href="http://www.kartaca.com">Kartaca</a>
             </p>
         </div>
     </div>
