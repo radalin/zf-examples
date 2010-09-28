@@ -21,7 +21,14 @@
  */
 ?>
 <div class="post">
-    <h2><?=$this->post->title?></h2>
+    <h2>
+        <?=$this->post->title?>
+        <span class="alt small">
+            <a href="<?=$this->baseUrl()?>/posts/update/postId/<?=$this->post->id?>">
+                (Edit this Post)
+            </a>
+        </span>
+    </h2>
     <div class="body">
         <?=nl2br($this->post->body)?>
     </div>
@@ -32,7 +39,7 @@
                 <hr />
                 <div class="comment">
                     <h3 class="title"><?=$cmt->title?> <span class="alt">by <?=$cmt->commentator?></span></h3>
-                     
+                    
                     <div class="body"><?=nl2br($cmt->body)?></div>
                 </div>
             <?php } ?>

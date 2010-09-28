@@ -31,22 +31,34 @@ class PostsTable extends Zend_Db_Table
      */
     public function getLatestPosts($count = 5)
     {
-        $select = $this->select()
+        $_select = $this->select()
                         ->order("id DESC")
                         ->limit($count);
-        return $this->fetchAll($select);
+        return $this->fetchAll($_select);
     }
 
     /**
      *
      * @param string $permalink
-     * @return Posts
+     * @return Post
      */
     public function findByPermalink($permalink)
     {
-        $select = $this->select()
+        $_select = $this->select()
             ->where("permalink = ?", $permalink);
-        return $this->fetchRow($select);
+        return $this->fetchRow($_select);
+    }
+
+    /**
+     *
+     * @param integer $id
+     * @return Post
+     */
+    public function findById($id)
+    {
+        $_select = $this->select()
+            ->where("id = ?", $id);
+        return $this->fetchRow($_select);
     }
 }
 

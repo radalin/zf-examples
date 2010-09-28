@@ -1,6 +1,7 @@
 <?php
 
 require_once(APPLICATION_PATH . "/forms/AddCommentForm.php");
+require_once(APPLICATION_PATH . "/forms/AddPostForm.php");
 
 /**
  * This file is part of Kartaca Sample ZF Blog.
@@ -101,6 +102,29 @@ class PostsController extends Zend_Controller_Action
 
     public function updateAction()
     {
-        // action body
+        $_form = new AddPostForm();
+        $this->view->updated = false;
+        if ($_POST) {
+            if ($_form->isValid($_POST)) {
+                if ($_form->isNewPostForm()) {
+                    $_newPost = $this->_postsTable->createRow();
+                    $_newPost->loadFromForm($_form);
+                    $_newPost->insert();
+                } else {
+                    $_oldPost = $this->_postsTable->findById($_form->getElement("post"));
+                    $_oldPost->loadFromForm($_form);
+                    $_oldPost->save();
+                }
+                $this->view->updated = true;
+            }
+        } else {
+            $_activePost = $this->_getParam("postId");
+            if (isset($_activePost) && is_numeric($_activePost)) { //Don't forget to make checks...
+                //get the content from database
+                $_post = $this->_postsTable->findById($_activePost);
+                $_form->setPost($_post);
+            }
+        }
+        $this->view->form = $_form;
     }
 }

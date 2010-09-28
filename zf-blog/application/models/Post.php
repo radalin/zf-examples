@@ -23,7 +23,10 @@ class Post extends Kartaca_Model
 {
     public function loadFromForm(Zend_Form $form)
     {
-        
+        $this->title = $form->getTitle();
+        $this->body = $form->getBody();
+        $this->permalink = $form->getPermalink();
+        $this->owner = $form->getOwner();
     }
 }
 
