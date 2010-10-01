@@ -1,0 +1,57 @@
+<?php
+/**
+ * This file is part of Kartaca Sample ZF Blog.
+ *
+ * Kartaca Sample ZF Blog is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * Kartaca Sample ZF Blog is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
+ * along with Kartaca Sample ZF Blog.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @category   Kartaca
+ * @package
+ * @copyright  Copyright (c) 2010 Kartaca (http://www.kartaca.com)
+ * @license    http://www.gnu.org/licenses/ GPL
+ * @author     roysimkes
+ */
+?>
+<h2>Comments Moderation</h2>
+<table class="comments-list">
+    <tr>
+        <th>Post Id</th>
+        <th>Commentator</th>
+        <th>Email</th>
+        <th>Title</th>
+        <th>Body</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    <?php foreach ($this->comments as $_comment) { ?>
+        <?php $_status = $_comment->getStatus(); ?>
+        <tr>
+            <td><?=$_comment->post_id?></td>
+            <td><?=$_comment->commentator?></td>
+            <td><?=$_comment->email?></td>
+            <td><?=$_comment->title?></td>
+            <td><?=$_comment->body?></td>
+            <td><?=$_status?></td>
+            <td>
+                <?php if ($_status == "Approved") { ?>
+                    <a href="<?=$this->baseUrl()?>/comments/update/commentId/<?=$_comment->id?>/do/reject">Reject</a>
+                <?php } elseif ($_status == "Pending") { ?>
+                    <a href="<?=$this->baseUrl()?>/comments/update/commentId/<?=$_comment->id?>/do/approve">Approve</a>
+                <?php } ?>
+                <?php if ($_status == "Deleted") { ?>
+                    <a href="<?=$this->baseUrl()?>/comments/update/commentId/<?=$_comment->id?>/do/restore">Restore</a>
+                <?php } else { ?>
+                    | <a href="<?=$this->baseUrl()?>/comments/update/commentId/<?=$_comment->id?>/do/delete">Delete</a>
+                <?php } ?>
+            </td>
+        </tr>
+    <?php } ?>
+</table>

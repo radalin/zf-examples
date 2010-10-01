@@ -46,7 +46,8 @@ $this->headLink()->appendStylesheet($this->baseUrl() . "/style.css");
         <h2 class="alt">That's a sample blog application for Zend Framework.</h2>
         <hr />
         <?php if (Zend_Auth::getInstance()->getIdentity()) { ?>
-            <span class="alt"><a href="<?=$this->baseUrl()?>/posts/update">Add New Post</a></span>
+            <span class="alt"><a href="<?=$this->baseUrl()?>/posts/update">Add New Post</a></span> |
+            <span class="alt"><a href="<?=$this->baseUrl()?>/comments/">Comments Moderation</a></span> |
             <span class="alt"><a href="<?=$this->baseUrl()?>/user/logout">Logout</a></span>
         <?php } else { ?>
             <span class="alt"><a href="<?=$this->baseUrl()?>/user">Login To Add New Posts</a></span>

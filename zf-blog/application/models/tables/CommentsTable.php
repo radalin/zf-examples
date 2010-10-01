@@ -32,8 +32,21 @@ class CommentsTable extends Zend_Db_Table
     public function getApprovedCommentsForPost($postId)
     {
         $select = $this->_getCommentsForPostBaseQuery($postId)
-            ->where("approved_at IS NOT NULL");
+            ->where("approved_at IS NOT NULL")
+            ->where("deleted_at IS NULL");
         return $this->fetchAll($select);
+    }
+
+    /**
+     *
+     * @param integer $id
+     * @return Comment
+     */
+    public function findById($id)
+    {
+        $_select = $this->select()
+            ->where("id = ?", $id);
+        return $this->fetchRow($_select);
     }
 
     /**
@@ -49,6 +62,7 @@ class CommentsTable extends Zend_Db_Table
     private function _getCommentsForPostBaseQuery($postId)
     {
         return $select = $this->select()
-            ->where("post_id = ?", $postId);
+            ->where("post_id = ?", $postId)
+            ->where("deleted_at IS NULL");
     }
 }

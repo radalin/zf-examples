@@ -14,30 +14,14 @@
  * along with Kartaca Sample ZF Blog.  If not, see <http://www.gnu.org/licenses/>.
  *
  * @category   Kartaca
- * @package    Kartaca_Blog_Model
+ * @package
  * @copyright  Copyright (c) 2010 Kartaca (http://www.kartaca.com)
  * @license    http://www.gnu.org/licenses/ GPL
  * @author     roysimkes
  */
-class Comment extends Kartaca_Model
-{
-    public function loadFromForm(Zend_Form $form)
-    {
-        $this->commentator = $form->getCommentator();
-        $this->body = $form->getBody();
-        $this->email = $form->getEmail();
-        $this->post_id = $form->getPostId();
-        $this->title = $form->getTitle();
-    }
 
-    public function getStatus()
-    {
-        if ($this->deleted_at !== null) {
-            return "Deleted";
-        }
-        if ($this->approved_at !== null) {
-            return "Approved";
-        }
-        return "Pending";
-    }
+if ($this->error === null) {
+    echo "Post is updated you can now go back.";
+} else {
+    echo "An error has occured. Please check the details below:<br />{$this->error}";
 }

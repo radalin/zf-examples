@@ -32,8 +32,9 @@ class PostsTable extends Zend_Db_Table
     public function getLatestPosts($count = 5)
     {
         $_select = $this->select()
-                        ->order("id DESC")
-                        ->limit($count);
+            ->order("id DESC")
+            ->limit($count)
+            ->where("deleted_at IS NULL");
         return $this->fetchAll($_select);
     }
 
