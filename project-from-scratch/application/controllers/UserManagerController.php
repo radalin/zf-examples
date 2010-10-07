@@ -6,7 +6,7 @@ class UserManagerController extends Kartaca_Controller_Action
     public function indexAction()
     {
         $userData = Doctrine::getTable("User");
-        $this->view->users = $userData->fetchAll(); //On the view there is a foreach loop which shows everything related to the user.
+        $this->view->users = $userData->findAll(); //On the view there is a foreach loop which shows everything related to the user.
         $this->_logger->debug("Loading All Users");
     }
 
